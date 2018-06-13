@@ -1,0 +1,30 @@
+{
+  "name": "room101",
+  "version": "1.0.0",
+  "description": "Mockup online storefront for Room101",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanmhale/room101.git"
+  },
+  "author": "ivanmhale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanmhale/room101/issues"
+  },
+  "homepage": "https://github.com/ivanmhale/room101#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.5"
+  }
+}
