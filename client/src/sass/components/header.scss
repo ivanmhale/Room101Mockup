@@ -30,6 +30,27 @@ body {
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
+  h1 {
+    text-transform: uppercase;
+    font-family: lato, "sans-serif";
+    width: max-content;
+    margin: 4rem auto;
+    position: relative;
+    font-weight: 1000;
+    @media screen and (max-width: 496px) {
+      width: 50%;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 0.2rem;
+      width: 100%;
+      background-color: $lightgrey;
+    }
+  }
 }
 
 // END BASE.SCSS
@@ -38,11 +59,23 @@ body {
 
 .header {
   position: relative;
-  padding-top: 1rem;
+  margin-top: 3rem;
   .nav {
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
     cursor: pointer;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+    background-color: white;
+    font-family: lato, "sans-serif";
+    font-size: 2rem;
+    @media screen and (max-width: 850px) {
+      font-size: 1.5rem;
+    }
 
     .search {
       svg {
@@ -53,11 +86,17 @@ body {
     li {
       text-transform: uppercase;
       position: relative;
+      .nav_blossom {
+        height: 3rem;
+        img {
+          height: 100%;
+        }
+      }
       &::after,
       &::before {
         content: "";
         position: absolute;
-        bottom: 0;
+        bottom: -0.5rem;
         left: 50%;
         transform: translateX(-50%);
         width: 0%;
@@ -93,13 +132,48 @@ body {
 
       .logo_words {
         width: calc(100vw-13rem);
+        @media screen and (max-width: 500px) {
+          width: calc(100vw-7rem);
+        }
+        @media screen and (max-width: 400px) {
+          width: calc(100vw-6rem);
+        }
         margin-left: 13rem;
+        @media screen and (max-width: 500px) {
+          margin-left: 8rem;
+        }
+        @media screen and (max-width: 400px) {
+          margin-left: 6rem;
+        }
         img {
-          width: 100%;
+          width: 95%;
         }
       }
 
+      .shadow {
+        position: fixed;
+        z-index: 99;
+        border-radius: 50%;
+        left: 1rem;
+        top: 1rem;
+        width: 11rem;
+        height: 11rem;
+        transition-duration: 0.5s;
+        box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+        @media screen and (max-width: 500px) {
+          width: 7rem;
+          height: 7rem;
+          left: 0.5rem;
+        }
+        @media screen and (max-width: 400px) {
+          width: 6rem;
+          height: 6rem;
+        }
+      }
       .nav_button {
+        img {
+          width: 100%;
+        }
         display: inherit;
         position: fixed;
         z-index: 100;
@@ -107,13 +181,20 @@ body {
         border-radius: 50%;
         left: 1rem;
         top: 1rem;
-        transition-duration: 0.2s;
+        transition-duration: 0.5s;
         backface-visibility: hidden;
-        &:hover{
+        &:hover {
           transform: rotateZ(72deg);
           cursor: pointer;
         }
 
+        @media screen and (max-width: 500px) {
+          width: 7rem;
+          left: 0.5rem;
+        }
+        @media screen and (max-width: 400px) {
+          width: 6rem;
+        }
       }
 
       .active {
@@ -121,21 +202,23 @@ body {
         transform: translateX(-50%) !important;
       }
 
-      .active_nav{
+      .active_nav {
         left: 0 !important;
       }
 
-      .nav_list{
+      .nav_list {
         position: fixed;
-        top:0;
+        top: 0;
         width: 100%;
         height: 100vh;
         font-size: 3rem;
-        background-color: rgba(255,255,255,.9);
+        background-color: rgba(255, 255, 255, 0.9);
         z-index: 50;
         left: -100%;
-        transition-duration: .2s;
-        ul{
+        transition-duration: 0.5s;
+        text-transform: uppercase;
+        font-family: lato, "sans-serif";
+        ul {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
@@ -144,6 +227,33 @@ body {
           display: flex;
           flex-direction: column;
           align-items: center;
+          li {
+            position: relative;
+            border-bottom: 2px solid transparent;
+
+            &::after,
+            &::before {
+              content: "";
+              position: absolute;
+              bottom: -0.5rem;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 0%;
+              height: 0.2rem;
+              background-color: black;
+              transition-duration: 0.3s;
+            }
+            &::before {
+              top: -0.5rem;
+            }
+            &:hover {
+              &::after,
+              &::before {
+                width: 100%;
+                transform: translateX(-50%);
+              }
+            }
+          }
         }
       }
     }
@@ -156,8 +266,9 @@ body {
 // CAROUSEL.SCSS
 .carousel-container {
   .carousel {
-    max-width: 100%;
+    width: 100%;
     display: flex;
+    transition-duration: 0.4s;
     .slide {
       width: 100vw;
       position: relative;
@@ -222,24 +333,25 @@ body {
     }
   }
   .bullets {
-    width: 10rem;
+    width: 15rem;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    list-style-type: none;
 
     .bullet {
       margin-top: 1rem;
       .square {
-        width: 1rem;
-        height: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
         background-color: $lightgrey;
         position: relative;
 
         &::after {
           content: "";
-          width: 1rem;
-          height: 1rem;
-          background-color: $lightgrey;
+          width: 1.5rem;
+          height: 1.5rem;
+          background-color: inherit;
           position: absolute;
           top: 0;
           left: 0;
@@ -249,9 +361,8 @@ body {
 
       &:hover {
         cursor: pointer;
-        .square,
         .square::after {
-          background-color: $goldenrod;
+          background-color: $gold;
         }
       }
     }
@@ -301,6 +412,12 @@ body {
           opacity: 1;
         }
       }
+      @media screen and (max-width: 600px) {
+        border: 0.1rem solid $lightgrey;
+        h3 {
+          opacity: 1;
+        }
+      }
     }
   }
 }
@@ -334,6 +451,8 @@ body {
       background-color: $darkgrey;
       color: white;
       transition-duration: 0.2s;
+      text-transform: uppercase;
+      font-family: lato, "sans-serif";
       &:hover {
         background-color: white;
         color: $darkgrey;
@@ -343,6 +462,108 @@ body {
 }
 
 //END Newsletter
+
+// Conspiracy
+.conspiracy-retailer {
+  position: relative;
+  overflow: hidden;
+  h3 {
+    position: absolute;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+  }
+}
+.conspiracy {
+  left: 0;
+  width: 200%;
+  &:hover {
+    cursor: pointer;
+  }
+  .slideshow {
+    width: 100%;
+    display: flex;
+    transition-duration: 0.3s;
+    .slide {
+      position: relative;
+      width: 100%;
+      img {
+        width: 100%;
+      }
+      h3 {
+        width: max-content;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        z-index: 100;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 300%;
+  }
+}
+.retailer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 40%;
+  overflow: hidden;
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    width: 80%;
+    border: 0.2rem solid white;
+    h3 {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+      opacity: 0;
+      transition-duration: 0.2s;
+      padding: 0.8rem;
+      @media screen and (max-width: 1000px) {
+        width: min-content;
+      }
+    }
+  }
+  img {
+    width: 100%;
+    transition-duration: 0.2s;
+  }
+  &:hover {
+    cursor: pointer;
+    img {
+      filter: blur(0.5rem);
+      -webkit-filter: blur(0.5rem);
+      transform: scale(1.2);
+    }
+    .container {
+      h3 {
+        opacity: 1;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    position: inherit;
+    width: 100%;
+    margin: 1rem auto;
+    .container {
+      h3 {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+//END Conspiracy
 
 //Footer
 
@@ -358,6 +579,15 @@ body {
 
     .footer-section {
       margin-bottom: 2rem;
+      & > div {
+        font-family: lato, "sans-serif";
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        &:hover {
+          cursor: pointer;
+          border-color: $lightgrey;
+        }
+      }
     }
 
     @media screen and (max-width: 900px) {
@@ -374,6 +604,13 @@ body {
       width: 100%;
       display: flex;
       justify-content: space-around;
+      border: none !important;
+      svg {
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border-color: $lightgrey;
+        }
+      }
     }
 
     .cards {

@@ -12,6 +12,7 @@ class Header extends Component {
   toggleNav() {
     if (!this.state.active) {
       document.getElementById("nav_button").classList.add("active");
+      document.getElementById("shadow").classList.add("active");
       document.getElementById("nav_list").classList.add("active_nav");
       return this.setState({
         active: true
@@ -21,6 +22,7 @@ class Header extends Component {
       active: false
     });
     document.getElementById("nav_button").classList.remove("active");
+    document.getElementById("shadow").classList.remove("active");
     document.getElementById("nav_list").classList.remove("active_nav");
   }
   render() {
@@ -43,8 +45,8 @@ class Header extends Component {
           </li>
         </ul>
         <header className="App-header">
-          <img src={logo_blossom} className="App-logo" alt="logo" />
-          <img src={logo_words} className="App-logo" alt="logo" />
+          <img src={logo_blossom} className="logo_blossom" alt="logo" />
+          <img src={logo_words} className="logo_words" alt="logo" />
         </header>
 
         <nav>
@@ -55,6 +57,7 @@ class Header extends Component {
           >
             <img src={logo_blossom} className="App-logo" alt="logo" />
           </div>
+          <span id="shadow" className="shadow"></span>
           <div id="nav_list" className="nav_list">
             <ul className="mobile_nav">
               <li>Collections</li>
