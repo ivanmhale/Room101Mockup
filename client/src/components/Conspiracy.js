@@ -7,15 +7,13 @@ import Retailer from "../assets/conspiracy/retailer.jpg";
 class Conspiracy extends Component {
   componentDidMount() {
     var j = 0;
-    //var slideWidth =
-    console.log(document.getElementById("slideshow").children);
 
     const autoSlide = () => {
       document.getElementById("slideshow").style.transform = `translateX(-${j *
         33.3333}%)`;
       j++;
 
-      if (j == 3) {
+      if (j === 3) {
         j = 0;
       }
 
