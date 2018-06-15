@@ -1,8 +1,15 @@
 const MongoClient = require("mongodb").MongoClient;
-const url = require("../secrets").url;
+
+const getUrl = () => {
+  if (process.env.NODE_ENV === "production") {
+     return process.env.URL;
+  } else {
+     return require("../secrets").url;
+  }
+}
+const url = getUrl();
 
 module.exports = app => {
-
   app.get("/inventory", (req, res) => {
     MongoClient.connect(url, (err, database) => {
       if (err) throw err;
