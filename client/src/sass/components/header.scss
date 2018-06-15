@@ -24,7 +24,6 @@ body {
   padding: 0;
   font-family: "PT Serif", serif;
   font-weight: 900;
-  overflow-x: hidden;
 }
 
 .section {
@@ -266,10 +265,8 @@ body {
 
 // CAROUSEL.SCSS
 .carousel-container {
-  overflow: hidden;
   .carousel {
     width: 100%;
-    overflow: hidden;
     display: flex;
     transition-duration: 0.4s;
     .slide {
