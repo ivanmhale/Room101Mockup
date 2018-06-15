@@ -266,6 +266,7 @@ body {
 
 // CAROUSEL.SCSS
 .carousel-container {
+  overflow: hidden;
   .carousel {
     width: 100%;
     overflow: hidden;
