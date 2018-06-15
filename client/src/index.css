@@ -199,6 +199,7 @@ body {
 
 .carousel-container .carousel {
   width: 100%;
+  overflow: hidden;
   display: flex;
   transition-duration: 0.4s; }
   .carousel-container .carousel .slide {
