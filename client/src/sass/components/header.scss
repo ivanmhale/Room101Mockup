@@ -3,6 +3,32 @@ $lightgrey: #707070;
 $darkgrey: #282828;
 $goldenrod: #daa520;
 $gold: #ffd700;
+
+@mixin btn-dark {
+  padding: 0.5rem;
+  background-color: $darkgrey;
+  color: white;
+  transition-duration: 0.2s;
+  text-transform: uppercase;
+  font-family: lato, "sans-serif";
+  &:hover {
+    background-color: white;
+    color: $darkgrey;
+  }
+}
+
+@mixin btn-trans {
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition-duration: 0.2s;
+  &:hover {
+    background-color: white;
+    color: $lightgrey;
+  }
+}
 //END VAR.SCSS
 
 // BASE.SCSS
@@ -315,16 +341,7 @@ body {
           font-family: "Lato", sans-serif;
         }
         button {
-          font-family: "Lato", sans-serif;
-          text-transform: uppercase;
-          background-color: transparent;
-          padding: 1rem;
-          border-radius: 0.5rem;
-          transition-duration: 0.2s;
-          &:hover {
-            background-color: white;
-            color: $lightgrey;
-          }
+          @include btn-trans;
         }
       }
       img {
@@ -447,16 +464,7 @@ body {
     }
 
     button {
-      padding: 0.5rem;
-      background-color: $darkgrey;
-      color: white;
-      transition-duration: 0.2s;
-      text-transform: uppercase;
-      font-family: lato, "sans-serif";
-      &:hover {
-        background-color: white;
-        color: $darkgrey;
-      }
+      @include btn-dark;
     }
   }
 }
@@ -567,6 +575,14 @@ body {
 //Footer
 
 .footer {
+  &::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -621,4 +637,89 @@ body {
   }
 }
 
+.head {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+  img {
+    position: relative;
+    width: 100%;
+  }
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    letter-spacing: 0.2rem;
+  }
+}
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  grid-gap: 1rem;
+  justify-content: space-around;
+  width: 95%;
+  margin: auto;
+  &_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20rem;
+    img {
+      width: 100%;
+    }
+    p {
+      text-align: center;
+    }
+  }
+}
+//Item
+.item {
+  &_showcase {
+    .select{
+      @media screen and (max-width: 600px){
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > * {
+      align-items: center;
+      &:not(:last-child){
+        margin-bottom: 1rem;
+      }
+    }
+    img{
+      max-width: 100%;
+    }
+    .button_container{
+      display: flex;
+      justify-content: space-between;
+      width: 24rem;
+      max-width: 100%;
+      @media screen and (max-width: 400px){
+        flex-direction: column;
+        button{
+          width: 100%;
+          height: 6rem;
+        }
+      }
+      button{
+        &:first-child {
+          @include btn-dark
+        }
+        &:last-child{
+          @include btn-trans;
+          padding: .5rem;
+        }
+      }
+    }
+  }
+}
+//end item
 //END footer

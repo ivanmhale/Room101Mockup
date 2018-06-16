@@ -1,12 +1,13 @@
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
 
 const getUrl = () => {
   if (process.env.NODE_ENV === "production") {
-     return process.env.URL;
+    return process.env.URL;
   } else {
-     return require("../secrets").url;
+    return require("../secrets").url;
   }
-}
+};
 const url = getUrl();
 
 module.exports = app => {
@@ -53,7 +54,28 @@ module.exports = app => {
       database.close();
     });
   });
-  app.get("/", (req, res) => {
-    res.send();
+
+  app.get("/item/:id", (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    MongoClient.connect(url, (err, database) => {
+      if (err) throw err;
+
+      const db = database.db("room101");
+
+      // QUERIES
+
+      db
+        .collection("products")
+        .findOne({ _id: ObjectId(id) }, (err, result) => {
+          if (err) throw err;
+          res.send(result);
+        });
+
+      // /QUERIES
+
+      database.close();
+    });
   });
 };

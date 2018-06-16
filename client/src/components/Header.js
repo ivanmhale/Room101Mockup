@@ -45,8 +45,10 @@ class Header extends Component {
           </li>
         </ul>
         <header className="App-header">
+          <a href="/">
           <img src={logo_blossom} className="logo_blossom" alt="logo" />
           <img src={logo_words} className="logo_words" alt="logo" />
+          </a>
         </header>
 
         <nav>
@@ -77,7 +79,9 @@ class Header extends Component {
             </ul>
           </div>
           <div className="logo_words">
+            <a href="/">
             <img src={logo_words} className="App-logo" alt="logo" />
+            </a>
           </div>
         </nav>
       </div>

@@ -122,7 +122,7 @@ class Carousel extends Component {
           .path[1].id * 100}vw)`;
 
         setTimeout(() => {
-          j = parseInt(e.path[1].id) + 1;
+          j = parseInt(e.path[1].id, 10) + 1;
           if (j === 4) j = 0;
           this.setState({ stop: false });
           autoSlide();
