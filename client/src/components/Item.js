@@ -5,7 +5,8 @@ import { getItem } from "../actions";
 
 class Item extends Component {
   componentDidMount() {
-    this.props.getItem(window.location.href.slice(27));
+    const item_id = window.location.href.replace(/^.*\/\/[^\/]+/, '').slice(6);
+    this.props.getItem(item_id);
   }
   render() {
     const item = this.props.item;

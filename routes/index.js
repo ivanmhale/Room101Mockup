@@ -57,7 +57,6 @@ module.exports = app => {
 
   app.get("/item/:id", (req, res) => {
     const id = req.params.id;
-    console.log(id);
 
     MongoClient.connect(url, (err, database) => {
       if (err) throw err;

@@ -5,7 +5,8 @@ import Hero from "../assets/heroes/hero_5.jpg";
 
 class Catalog extends Component {
   componentDidMount() {
-    switch (window.location.href.slice(31)) {
+    const category = window.location.href.replace(/^.*\/\/[^\/]+/, '').slice(10);
+    switch (category) {
       case "rings":
         this.props.getProducts("rings");
         break;
@@ -27,8 +28,8 @@ class Catalog extends Component {
   renderItems() {
     return this.props.products.map(product => {
       return (
-        <a href={`/item/${product._id}`}>
-          <div key={product._id} className="catalog_item">
+        <a key={product._id} href={`/item/${product._id}`}>
+          <div className="catalog_item">
             <img src={product.imageUrl} alt="" />
             <p>{product.name}</p>
             <p>
@@ -40,7 +41,6 @@ class Catalog extends Component {
     });
   }
   render() {
-    this.props.products.map(p => console.log(p));
     return (
       <div className="catalog_container">
         <div className="head">
